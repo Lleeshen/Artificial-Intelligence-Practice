@@ -1,9 +1,25 @@
 from vacuum import *
 
-actSeq1,steps1 = vacuum(['Clean','Clean',1],[])
-print(actSeq1,steps1)
-actSeq2,steps2 = vacuum(['Clean','Dirty',0],[])
-print(actSeq2,steps2)
-actSeq3,steps3 = vacuum(['Dirty','Dirty',1],[])
-print(actSeq3,steps3)
-
+res = []
+state = []
+for i in range(8) :
+    state.clear()
+    res.clear()
+    s = i & 1
+    if s == 0:
+        state.append('Clean')
+    else:
+        state.append('Dirty')
+    s = i & 2
+    if s == 0:
+        state.append('Clean')
+    else:
+        state.append('Dirty')
+    s = i & 4
+    if s == 0:
+        state.append(0)
+    else:
+        state.append(1)
+    print('Initial State: ',state,res)
+    actSeq, steps = vacuum(state,res)  
+    print(actSeq,steps,sep=',')
